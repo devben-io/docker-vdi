@@ -5,12 +5,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Configure timezone and locale to spanish and America/Bogota timezone. Change locale and timezone to whatever you want
 ENV LANG="de_DE.UTF-8"
 ENV LANGUAGE=de_DE
+ENV	KEYMAP=de
+ENV TIMEZONE="Europe/Berlin"
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && \
-	locale-gen de_DE.UTF-8 && locale-gen de_DE && \
-	echo "Europe/Berlin" > /etc/timezone && \
+	locale-gen ${LANG} && locale-gen ${LANGUAGE} && \
+	echo "${TIMEZONE}" > /etc/timezone && \
     apt-get install -y locales && \
     sed -i -e "s/# $LANG.*/$LANG.UTF-8 UTF-8/" /etc/locale.gen && \
+	setxkbmap ${KEYMAP}&& \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=$LANG && \
 	apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
