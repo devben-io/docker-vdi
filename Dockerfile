@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Configure timezone and locale to spanish and America/Bogota timezone. Change locale and timezone to whatever you want
-ENV LANG="es_ES.UTF-8"
+ENV LANG="de_DE.UTF-8"
 ENV LANGUAGE=de_DE
 RUN locale-gen de_DE.UTF-8 && locale-gen de_DE
 RUN echo "Europe/Berlin" > /etc/timezone && \
