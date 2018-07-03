@@ -5,7 +5,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Configure timezone and locale to spanish and America/Bogota timezone. Change locale and timezone to whatever you want
 ENV LANG="de_DE.UTF-8"
 ENV LANGUAGE=de_DE
-RUN apt-get install -y local-gen && locale-gen de_DE.UTF-8 && locale-gen de_DE
+
+RUN apt-get clean && apt-get update && apt-get install -y locales
+RUN ocale-gen de_DE.UTF-8 && locale-gen de_DE
 RUN echo "Europe/Berlin" > /etc/timezone && \
     apt-get install -y locales && \
     sed -i -e "s/# $LANG.*/$LANG.UTF-8 UTF-8/" /etc/locale.gen && \
