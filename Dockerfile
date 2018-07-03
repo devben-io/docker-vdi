@@ -13,12 +13,12 @@ RUN apt-get clean && apt-get update && apt-get install -y locales && \
 	echo "${TIMEZONE}" > /etc/timezone && \
     apt-get install -y locales && \
     sed -i -e "s/# $LANG.*/$LANG.UTF-8 UTF-8/" /etc/locale.gen && \
-	setxkbmap ${KEYMAP}&& \
     dpkg-reconfigure --frontend=noninteractive locales && \
     update-locale LANG=$LANG && \
 	apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
 	add-apt-repository universe && \
-	apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation
+	apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation && \ 
+	setxkbmap ${KEYMAP}
 
 
 
