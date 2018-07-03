@@ -37,7 +37,6 @@ RUN add-apt-repository ppa:webupd8team/tor-browser && \
 RUN curl -fSL "http://download.nomachine.com/download/6.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 && echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - \
 && dpkg -i nomachine.deb
-#setxkbmap ${KEYMAP}
 
 ADD nxserver.sh /
 

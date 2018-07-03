@@ -7,4 +7,4 @@ groupadd -r $USER -g 433 \
 && echo $USER':'$PASSWORD | chpasswd
 /etc/NX/nxserver --startup
 tail -f /usr/NX/var/log/nxserver.log
-setkbmap ${KEYMAP}
+setxkbmap de
