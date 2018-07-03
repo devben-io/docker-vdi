@@ -21,8 +21,8 @@ RUN apt-get clean && apt-get update && apt-get install -y locales && \
 
 
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
-ENV NOMACHINE_PACKAGE_NAME nomachine_5.2.11_1_amd64.deb
-ENV NOMACHINE_MD5 d697e5a565507d522380c94d2f295d07
+ENV NOMACHINE_PACKAGE_NAME nomachine_6.2.4_1_amd64.deb
+ENV NOMACHINE_MD5 210bc249ec9940721a1413392eee06fe
 
 # Install the mate-desktop-enviroment version you would like to have
 RUN apt-get update -y && \
