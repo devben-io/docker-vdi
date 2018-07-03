@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Configure timezone and locale to spanish and America/Bogota timezone. Change locale and timezone to whatever you want
 ENV LANG="de_DE.UTF-8"
 ENV LANGUAGE=de_DE
-ENV	KEYMAP=de
+ENV KEYMAP=de
 ENV TIMEZONE="Europe/Berlin"
 
 RUN apt-get clean && apt-get update && apt-get install -y locales && \
@@ -17,9 +17,7 @@ RUN apt-get clean && apt-get update && apt-get install -y locales && \
     update-locale LANG=$LANG && \
 	apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
 	add-apt-repository universe && \
-	apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation && \ 
-	setxkbmap ${KEYMAP}
-
+	apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation
 
 
 
@@ -39,6 +37,7 @@ RUN add-apt-repository ppa:webupd8team/tor-browser && \
 RUN curl -fSL "http://download.nomachine.com/download/6.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 && echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - \
 && dpkg -i nomachine.deb
+#setxkbmap ${KEYMAP}
 
 ADD nxserver.sh /
 
