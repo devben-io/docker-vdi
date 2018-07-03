@@ -6,17 +6,19 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV LANG="de_DE.UTF-8"
 ENV LANGUAGE=de_DE
 
-RUN apt-get clean && apt-get update && apt-get install -y locales
-RUN locale-gen de_DE.UTF-8 && locale-gen de_DE
-RUN echo "Europe/Berlin" > /etc/timezone && \
+RUN apt-get clean && apt-get update && apt-get install -y locales && \
+	locale-gen de_DE.UTF-8 && locale-gen de_DE && \
+	echo "Europe/Berlin" > /etc/timezone && \
     apt-get install -y locales && \
     sed -i -e "s/# $LANG.*/$LANG.UTF-8 UTF-8/" /etc/locale.gen && \
     dpkg-reconfigure --frontend=noninteractive locales && \
-    update-locale LANG=$LANG
+    update-locale LANG=$LANG && \
+	apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
+	add-apt-repository universe && \
+	apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation
 
-RUN apt-get update -y && apt-get install -y software-properties-common python-software-properties python3-software-properties sudo
-RUN add-apt-repository universe
-RUN apt-get update -y && apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation
+
+
 
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
 ENV NOMACHINE_PACKAGE_NAME nomachine_5.2.11_1_amd64.deb
