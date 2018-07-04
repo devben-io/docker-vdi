@@ -21,7 +21,7 @@ ENV NOMACHINE_MD5 a066f66b07f9d9b4b189e82d46f4464e
 ########################
 
 # Base System
-RUN apt-get clean && apt-get update && apt-get install -y locales && \
+RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
 	#locales
 	locale-gen ${LANG} && locale-gen ${LANGUAGE} && \
 	echo "${TIMEZONE}" > /etc/timezone && \
