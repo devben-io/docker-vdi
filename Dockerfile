@@ -8,7 +8,7 @@ ENV LANGUAGE=de_DE
 ENV KEYMAP="de"
 ENV TIMEZONE="Europe/Berlin"
 #ENV DESKTOP="mate-desktop-environment-extras"
-ENV DESKTOP="xfce4"
+ENV DESKTOP="xfce"
 
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
 # Free
