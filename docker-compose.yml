@@ -6,8 +6,12 @@ services:
     - USER=user
     cap_add:
     - SYS_PTRACE
-    image: cesarandreslopez/docker-ubuntu-mate-desktop-nomachine
+    image: vdi:xfce
     stdin_open: true
     tty: true
     ports:
-    - 4000:4000/tcp
+    - 4001:4000/tcp
+    - 4443:4443/tcp
+    - 4080:4080/tcp
+    volumes:
+    - ${PWD}/volumes/home:/home
