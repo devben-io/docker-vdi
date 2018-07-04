@@ -1,0 +1,960 @@
+######################################################################
+#                                                                    #
+#  Copyright (c) 2001, 2018 NoMachine, http://www.nomachine.com.     #
+#                                                                    #
+#  All rights reserved.                                              #
+#                                                                    #
+######################################################################
+
+#
+# Some configuration keys are used to set specific limits, such as the
+# maximum size for the session log. To remove a limitation, set the
+# corresponding key to value '0' or 'Unlimited'.
+
+#
+# Configuration file format version.
+#
+ConfigFileVersion 4.0
+
+#
+# Specify hostname for the NoMachine node.
+#
+#NodeName localhost.localdomain
+
+#
+# Set log level. Node logs all events that are <= to the level set and
+# according to the following convention:
+#
+# KERN_ERR 3: Error condition.
+# KERN_INFO 6: Informational.
+# KERN_DEBUG 7: Debug messages.
+#
+# The suggested values are:
+#
+# 6: Default value. Only relevant events are logged.
+#
+# 7: Set the log level to debug.
+#
+#SessionLogLevel 6
+
+#
+# Point the node to log to a specific file. The default log file is
+# /Library/Application Support/NoMachine/var/log/nxserver.log on Mac
+# OS X, %PROGRAMDATA%/NoMachine/var/log/nxserver.log on Windows and
+# /usr/NX/var/log/nxserver.log on Linux.
+#
+#SystemLogFile /usr/NX/var/log/nxserver.log
+
+#
+# Specify path and name of the command to start a new virtual desktop,
+# by default the X session set on the system.
+#
+DefaultDesktopCommand "/etc/X11/Xsession default"
+
+#
+# Provide a comma-separated list of session types supported on this
+# node host.
+#
+AvailableSessionTypes unix-remote,unix-console,unix-default,unix-application,physical-desktop,shadow,unix-xsession-default,unix-xdm
+
+#
+# Set the maximum size, expressed in bytes, allowed for the session
+# log. Node terminates the session when this limit is exceeded.
+#
+#SessionLogLimit 0
+
+#
+# Enable or disable the automatic clean-up of session directories at
+# the time sessions are terminated.
+#
+# 1: Enabled. This is the default value.
+#
+# 0: Disabled. Directories are prefixed by 'T-' and left
+#    for further reference.
+#
+#SessionLogClean 1
+
+#
+# Enable or disable node to log the X clients standard error.
+#
+# 1: Enabled. Stderr of X clients is redirected to 'clients'
+#    file in the session directory.
+#
+# 0: Disabled. Stderr of X clients is redirected to /dev/null.
+#
+#ClientLog 1
+
+#
+# Set the maximum size, expressed in bytes, allowed for the X clients
+# log. Node terminates the session when this limit is exceeded.
+#
+#ClientLogLimit 0
+
+#
+# Set the maximum amount of data, in bytes, that can be copied from
+# the session to the client. The default value is 0, i.e. unlimited.
+#
+#ClipboardBufferLimit 0
+
+#
+# Specify for how long the node has to wait for a reply from NoMachine
+# server before considering that the connection with the server has
+# been lost. Default value, 120 seconds, lets node wait for 2 minutes.
+# Set this value to 0 to disable timeout on the node.
+#
+#NodeConnectionTimeout 120
+
+#
+# Enable or disable disk sharing:
+#
+# client: Filesystem on the client can be connected on server side and
+#         accessed from the session.
+#
+# server: Filesystem on the server can be connected on the end-user's
+#         machine and accessed through the whole life of the session.
+#
+# both:   Client and server filesystem can be connected on remote and
+#         locale respectively.
+#
+# none:   Neither client or server filesystem can be connected.
+#
+#EnableDiskSharing both
+
+#
+# Specify path of base directory where the node has to mount disks
+# accessible only by the user who connected them. Base directory is
+# "$(DESKTOP)" by default. $(HOME) and $(USER) are also accepted values
+# and can be concatenated to specify path to a directory, for example
+# "$(HOME)/Shares". Target directory must exist on the system.
+#
+#DiskSharingPrivateBasePath "$(DESKTOP)"
+
+#
+# Specify path to base directory where the node has to mount user's
+# disks which are accessible to users running a session on that server.
+# Base directory is "$(PUBLIC)" by default. $(PUBLIC) is /Volumes on Mac
+# OS X, /media on Linux, C:\Users\Public on Windows Vista/7/8 and
+# %ALLUSERSPROFILE% on XP. $(USER) is an accepted value and can be
+# concatenated to specify path to a directory, for example "/tmp/$(USER)".
+# Target directory must exist on the system.
+#
+#DiskSharingPublicBasePath "$(PUBLIC)"
+
+#
+# Specify which disks are available to be connected in the session.
+# Default value is 'all'. Alternatively, specify path to the disk or
+# directory in a list of comma-separated values. $(HOME) and $(USER)
+# are accepted values. For example "$(HOME),/Volumes/TimeMachine".
+#
+#DiskSharingList all
+
+#
+# Enable or disable printer sharing
+#
+# client: Printers on the client can be connected on server side and
+#         made available within the session.
+#
+# server: Printers on the server can be connected on the end-user's
+#         machine.
+#
+# both:   Client and server printers can be connected on remote and
+#         locale respectively.
+#
+# none:   Neither client or server printers can be connected.
+#
+#EnablePrinterSharing both
+
+#
+# Enable or disable usb sharing:
+#
+# client: USB devices on the client can be forwarded on server side and
+#         made available within the session
+#
+# server: USB devices on the server can be connected on the end-user's
+#         machine.
+#
+# both:   Client and server USB devices can be connected on remote and
+#         locale respectively.
+#
+# none:   Neither client or server USB devices can be connected.
+#
+#EnableUSBSharing both
+
+#
+# Enable or disable network services sharing:
+#
+# client: Network servers on client side can be added and made available
+#         within the session.
+#
+# server: Network server on the server side can be added and made
+#         available on the end-user's machine.
+#
+# both:   Network servers from client and server side can be connected
+#         on remote and locale respectively.
+#
+# none:   Neither client or server side network servers can be
+#         connected.
+#
+#EnableNetworkSharing both
+
+#
+# Enable or disable connecting a smartcard reader:
+#
+# 1: Enabled. The smartcard reader plugged on client side can be
+#             forwarded to server side.
+#
+# 0: Disabled. The smartcard reader cannot be forwarded.
+#
+EnableSmartcardSharing 1
+
+#
+# Enable or disable file transfer:
+#
+# client: Files can be transferred from client machine to the
+#         server.
+#
+# server: Files can be sent from the server to users.
+#
+# both:   Client and server files can be transferred on remote and
+#         locale respectively.
+#
+# none:   Neither client or server files can be transferred.
+#
+#EnableFileTransfer both
+
+#
+# Specify which audio interface should be used to provide sound in
+# sessions. Key values depend on the hosting operating system and can
+# be 'pulseaudio', 'alsa' or 'disabled' on Linux, and 'nxaudio' or
+# 'disabled' on Windows and Mac OS X.
+#
+AudioInterface pulseaudio
+
+#
+# Specify path and name of the command to start PulseAudio server.
+#
+CommandStartPulseAudio "/usr/bin/pulseaudio --high-priority=no"
+
+#
+# Enable or disable CUPS support. This doesn't apply to Windows plat-
+# forms. This key is obsolete and used only for retro compatibility.
+#
+# 1: Enabled. Enable CUPS support.
+#
+# 0: Disabled. Disable CUPS support.
+#
+EnableCUPSSupport 1
+
+#
+# Specify the path of the directory holding CUPS binaries (e.g. the
+# 'lpoptions' program). This key is obsolete and used only for retro
+# compatibility.
+#
+CUPSBinPath /usr/bin
+
+#
+# Specify the path of the directory holding CUPS programs and reserved
+# for administrative purposes (e.g. 'cupsd' or 'lpadmin'). This key is
+# obsolete and used only for retro compatibility.
+#
+CUPSSbinPath /usr/sbin
+
+#
+# Specify the path of directory holding the CUPS backend. This key is
+# obsolete and used only for retro compatibility.
+#
+CUPSBackendPath /usr/lib/cups/backend
+
+#
+# Specify path of base directory where the node has to mount shares
+# exported by the user. Default value is $(HOME)/MyShares. This key
+# is obsolete and used only for retro compatibility.
+#
+#ShareBasePath $(HOME)/MyShares
+
+#
+# Allow node to use the CIFS (SMB) file-sharing protocol to attach the
+# filesystem to the target directory. This key is obsolete and used
+# only for retro compatibility.
+#
+# 1: Enabled. Node uses smbfs to mount and unmount client shares.
+#
+# 0: Disabled. Node forbids any attempt to mount shares via smbfs.
+#
+EnableSMBFSSupport 0
+
+#
+# Specify path and name of the command to start 'GNOME'. This doesn't
+# apply to Windows and Mac OS X platforms.
+#
+#CommandStartGnome ""
+
+#
+# Specify path and name of the command to start 'KDE'. This doesn't
+# apply to Windows and Mac OS X platforms.
+#
+#CommandStartKDE ""
+
+#
+# Specify path and name of the command to start 'CDE'. This applies to
+# Solaris SPARC platforms only.
+#
+#CommandStartCDE cdwm
+
+#
+# Specify path and name of the command to start the RFB Client. If the
+# Server supports VNC sessions, set this key to "vncviewer -fullscreen"
+# to use the vncviewer client.
+#
+#CommandStartRFB ""
+
+#
+# Specify path and name of the command to start the RDP Client. If the
+# Server supports RDP sessions, set this key to "rdesktop -f" to use
+# the rdesktop client.
+#
+#CommandStartRDP ""
+
+#
+# Specify the domain of the Windows Terminal Server.
+#
+#DefaultRDPDomain ""
+
+#
+# Specify path and name of the command 'fuser' to identify processes
+# using files or sockets.
+#
+CommandFuser /bin/fuser
+
+#
+# Specify path and name of the command 'lsof' to list open files. This
+# doesn't apply to Windows and Mac OS X platforms.
+#
+#CommandLsof /usr/sbin/lsof
+
+#
+# Specify path and name of the client program to be run by the node,
+# for example for issuing dialog boxes and messages, instead of the
+# default nxclient program.
+#
+#CommandClient /usr/NX/bin/nxclient
+
+#
+# Specify path and name of the command 'xauth' to edit and display
+# the authorization information used when connecting to the X server.
+#
+#CommandXauth /usr/NX/bin/nxauth
+
+#
+# Specify path and name of the command 'xdpyinfo' for displaying info-
+# rmation about an X server.
+#
+CommandXdpyInfo /usr/bin/xdpyinfo
+
+#
+# Specify path and name of the command 'xmodmap' to edit and display
+# the keyboard modifier map and keymap table.
+#
+CommandXmodmap /usr/bin/xmodmap
+
+#
+# Enable or disable use of 'xkbcomp' command:
+#
+# 1: Enabled. Use 'xkbcomp' command.
+#
+# 0: Disabled.
+#
+#EnableCommandXkbComp 1
+
+#
+# Specify path and name of the command 'xkbcomp' to compile XKB key-
+# board description.
+#
+CommandXkbComp /usr/bin/xkbcomp
+
+#
+# Specify location and file name of the keymap file used by 'xkbcomp'.
+#
+#XkbCompKeymapFile /etc/X11/xkb/keymap/xfree86
+
+#
+# Enable or disable loading VirtualGL libraries when starting virtual
+# desktops on Linux.
+#
+# 1: Enabled. This make OpenGL applications able to use server side
+#             graphics hardware.
+#
+# 0: Disabled. VirtualGL libraries are not loaded.
+#
+#EnableVirtualGLSupport 0
+
+#
+# By default the agent only uses the X11 system fonts, uncomment this
+# key to enable use of an X Font Server.
+#
+#AgentFontServer unix/:7100
+
+#
+# Specify the path of default X window system startup script. This
+# doesn't apply to Windows and Mac OS X platforms.
+#
+DefaultXSession "/etc/X11/Xsession default"
+
+#
+# Set the default DPI of the X server to the specified value. This
+# should normally not be required, but some less recent desktop appli-
+# cations fail to set an appropriate value and fall back to 75 DPI,
+# which is the default value reported by the X server.
+#
+#DefaultXDPI 96
+
+#
+# Specify path of libraries to be added to the NoMachine agent environ-
+# ment. Be sure that NoMachine libraries are listed first.
+#
+#AgentLibraryPath /lib
+
+#
+# Specify a list of comma-separated options to be added to NoMachine
+# proxy transport.
+#
+#ProxyExtraOptions limit=256k,link=modem
+
+#
+# Append arguments to the command used by the Node to load the display
+# server program.
+#
+# Multiple parameters can be specified by separating them with a blank
+# character. For security reasons, no shell interpretation is made.
+#
+#DisplayServerExtraOptions "-nocomposite -noshpix"
+
+#
+# Append arguments to the command used by the Node to load the display
+# agent connected to the display server.
+#
+# Multiple parameters can be specified by separating them with a blank
+# character. For security reasons, no shell interpretation is made.
+#
+#DisplayAgentExtraOptions "-nocomposite -noshpix"
+
+#
+# Specify how clients will have to contact the node, by default by
+# the NX service. To allow for multiple methods, specify them in a
+# comma-separated list. Supported methods are: NX and SSH.
+#
+ClientConnectionMethods NX,SSH
+
+#
+# Specify the location and name of the SSH authorized keys file.
+#
+#SSHAuthorizedKeys $(HOME)/.ssh/authorized_keys2
+
+#
+# Specify the message to be shown to the user when the user starts the
+# session on this node for the first time.
+#
+#NodeFirstLoginGreeting "Welcome to your NoMachine session"
+
+#
+# Specify the message to be shown to the user every time the user
+# starts a new session on this node.
+#
+#NodeLoginGreeting "Welcome to your NoMachine session"
+
+#
+# Specify a different path to the default, i.e. user's home, where
+# the .nx directory has to be created to store session files. If it
+# doesn't exist yet, node will try to create a sub-directory for
+# each of the users starting a session there, named as username, and
+# will create the .nx under that sub-directory. For example, if this
+# key is set to /tmp/nxdir/, when user nxtest runs the first session,
+# the node will try to create the /tmp/nxdir/nxtest/.nx directory.
+# The directory specifed in the UserNXDirectoryPath key needs to
+# have proper ownership and permissions set to ensure that the node,
+# running as the user, can access it. I.e. the directory should be
+# writeable for all users or alternatively, the administrator should
+# create a directory with proper ownership and permissions, named as
+# username, for each of the users who need to start sessions there.
+#
+#UserNXDirectoryPath ""
+
+#
+# Specify absolute path of the custom script to be executed before
+# the session start-up. The script can accept session ID, username,
+# session type and display as its input.
+#
+# E.g. UserScriptBeforeSessionStart /tmp/nxscript/script.sh
+#
+#UserScriptBeforeSessionStart ""
+
+#
+# Specify absolute path of the custom script to be executed after the
+# session start-up. The script can accept session ID, username, ses-
+# sion type and display as its input.
+#
+#UserScriptAfterSessionStart ""
+
+#
+# Specify absolute path of the custom script to be executed before
+# the session is disconnected. The script can accept session ID, user-
+# name, session type and display as its input.
+#
+#UserScriptBeforeSessionDisconnect ""
+
+#
+# Specify absolute path of the custom script to be executed after the
+# session is disconnected. The script can accept session ID, username,
+# session type and display as its input.
+#
+#UserScriptAfterSessionDisconnect ""
+
+#
+# Specify absolute path of the custom script to be executed before the
+# session is closed. The script can accept session ID, username, ses-
+# sion type and display its input.
+#
+#UserScriptBeforeSessionClose ""
+
+#
+# Specify absolute path of the custom script to be executed after the
+# session is closed. The script can accept session ID, username, ses-
+# sion type and display its input.
+#
+#UserScriptAfterSessionClose ""
+
+#
+# Specify absolute path of the custom script to be executed before
+# the session is reconnected. The script can accept session ID, user-
+# name, session type and display as its input.
+#
+#UserScriptBeforeSessionReconnect ""
+
+#
+# Specify absolute path of the custom script to be executed after the
+# session is reconnected. The script can accept session ID, username,
+# session type and display as its input.
+#
+#UserScriptAfterSessionReconnect ""
+
+#
+# Specify absolute path of the custom script to be executed after
+# session failure. The script can accept session ID, username, ses-
+# sion type and display as its input.
+#
+#UserScriptAfterSessionFailure ""
+
+#
+# Specify how many CPU cores the display server will use to encode
+# display updates. The default value 'auto' allows NoMachine to use
+# a default number of threads based on the available cores.
+#
+DisplayServerThreads auto
+
+#
+# Specify how many CPU cores the encoder will use to encode display
+# updates. The default value 'auto' allows NoMachine to use a default 
+# number of threads based on the available cores.
+#
+DisplayEncoderThreads auto
+
+#
+# Allow NoMachine to use a specific codec to encode videos or rely on
+# its ability to choose the codec depending on network and hardware
+# capabilities:
+#
+# 1: Enabled. Nomachine always uses the specified codec.
+#
+# 0: Disabled. NoMachine automatically adapts to network conditions
+#    and the available hardware.
+#
+#EnableDisplayServerVideoCodec 0
+
+#
+# Specify the codec to be used for encoding displays. Accepted
+# values are 'vp8','h264'and 'mjpeg'.
+#
+#DisplayServerVideoCodec vp8
+
+#
+# Specify the video frame rate for encoding displays. Accepted values
+# are '30','40','50' and '60'.
+#
+#DisplayServerVideoFrameRate 30
+
+#
+# Allow NoMachine to use a specific frame rate to encode displays or
+# rely on its ability to choose automatically a frame rate depending
+# on network conditions.
+#
+# 1: Enabled. Nomachine uses only the specified frame rate.
+#
+# 0: Disabled. NoMachine automatically chooses a frame rate.
+#
+#DisplayServerUseVideoFrameRate 0
+
+#
+# Enable or disable the debug tool when the node program is launched.
+#
+# 1: Enabled. The debug tool specified in the CommandDebug key will
+#    be run to debug the node program. This can slow down the exe-
+#    cution of the node.
+#
+# 0: Disabled. Debug tool is not run.
+#
+#EnableDebug 0
+
+#
+# Specify absolute path of the command to launch a debug tool.
+#
+#CommandDebug ""
+
+#
+# Specify path and commands of the debug tool in a comma-separated
+# list, e.g. accepted command for Valgrind is '/usr/bin/valgrind.bin'.
+#
+#AcceptedDebuggerCommands /usr/bin/valgrind.bin
+
+#
+# Append arguments to the command used by the Node to launch the
+# debug tool
+#
+# Multiple parameters can be specified by separating them with a blank
+# character. For security reasons, no shell interpretation is made.
+#
+#DebugOptions ""
+
+#
+# Specify process execution priority for the display server loaded by
+# the Node. Accepted values are:
+#
+# low:      process has niceness 19 on Linux and OS X and idle prio-
+#           rity on Windows. This is the least favourable scheduling.
+#
+# normal:   process has niceness 0 set on Linux and OS X and normal
+#           priority class on Windows.
+#
+# high:     process has niceness -10 set on Linux and OS X and high
+#           priority class on Windows.
+#
+# realtime: process has niceness -20 set on Linux and OS X and real
+#           time priority class on Windows. This is the most favourable
+#           scheduling.
+#
+#DisplayServerPriority realtime
+
+#
+# Specify process execution priority for the display agent loaded by
+# the Node and connected to the display server. Accepted values are:
+#
+# low:      process has niceness 19 on Linux and OS X and idle prio-
+#           rity on Windows. This is the least favourable scheduling.
+#
+# normal:   process has niceness 0 set on Linux and OS X and normal
+#           priority class on Windows.
+#
+# high:     process has niceness -10 set on Linux and OS X and high
+#           priority class on Windows.
+#
+# realtime: process has niceness -20 set on Linux and OS X and real
+#           time priority class on Windows. This is the most favourable
+#           scheduling.
+#
+#DisplayAgentPriority realtime
+
+#
+# Enable or disable the server forbidding a file transfer when the
+# size of the file to be uploaded exceeds the configured limit.
+#
+# 1: Enabled. The server doesn't allow to transfer a file when
+#    its size exceeds the configured limit.
+#
+# 0: Disabled. File transfer is always allowed, even when the file
+#    is largen than the size limit.
+#
+#EnableUploadSizeLimit 0
+
+#
+# Set the maximum size for files that can be transferred during the
+# upload, in bytes. The default value is 104857600 B, 100MB.
+#
+#UploadSizeLimit 104857600
+
+#
+# Enable or disable the server forbidding a file transfer when the
+# size of the file to be downloaded exceeds the configured limit.
+#
+# 1: Enabled. The server doesn't allow to transfer a file when
+#    its size exceeds the configured limit.
+#
+# 0: Disabled. File transfer is always allowed, even when the file
+#    is largen than the size limit.
+#
+#EnableDownloadSizeLimit 0
+
+#
+# Set the maximum size for files that can be transferred during the
+# download, in bytes. The default value is 104857600 B, 100MB.
+#
+#DownloadSizeLimit 104857600
+
+#
+# Specify path of base directory where the node has to save files
+# uploaded to the server. Base directory is "$(DESKTOP)" by default.
+# $(HOME) and $(USER) are also accepted values and can be concatenated
+# to specify path to a directory, for example "$(HOME)/Shares".
+# Target directory must exist on the system.
+#
+#FileTransferSavePath "$(DESKTOP)"
+
+#
+# Enable or disable saving a transferred file to the specified directory.
+#
+# 1: Enabled. Given the path to be used, the server always save a
+#    transferred file to that directory.
+#
+# 0: Disabled. User is always asked where to save the transferred
+#    file.
+#
+#FileTransferSaveForcePath 0
+
+#
+# Enable or disable the ability of recording activities on the local
+# desktop:
+#
+# 1: Enabled. User can create a video of the local desktop and save it
+# on their local device.
+#
+# 0: Disabled. Recording of the local desktop is disabled.
+#
+#EnableLocalRecording 1
+
+#
+# Enable or disable the ability of recording session activities:
+#
+# 1: Enabled. User can create a video of the session and save it
+#    on their local device.
+#
+# 0: Disabled. Session recording option is disabled.
+#
+#EnableSessionRecording 1
+
+#
+# Enable or disable the whiteboard and chat tool in the Monitor tool.
+#
+# 1: Enabled. User can run the whiteboard from the Monitor menu.
+#
+# 0: Disabled. Item 'Show the whiteboard' is not accessible in the
+#    monitor menu.
+#
+#EnableWhiteboard 1
+
+#
+# Enable or disable displaying the icon of the Monitor application
+# in the system tray.
+#
+# 1: Enabled. The Monitor icon is visible in the system tray.
+#
+# 0: Disabled. The Monitor icon is hidden. A notification
+#    dialog is issued when users are connecting.
+#
+#DisplayMonitorIcon 1
+
+#
+# Enable or disable displaying the Monitor window, i.e. the Server
+# status panel.
+#
+# 1: Enabled. The Server Status panel is always visible
+#    and cannot be closed.
+#
+# 0: Disabled. The Server status panel is never shown. It
+#    can be run from the Monitor menu, accessible by the
+#    Monitor icon in the system tray.
+#
+#AlwaysDisplayMonitorWindow 0
+
+#
+# Enable or disable displaying the Monitor balloon messages issued to
+# notify about events like user's disconnection or user's requests
+# for connecting.
+#
+# 1: Enabled. A balloon message pops-up each time a user disconnects,
+#    a connection request arrives or a user disconnects.
+#
+# 0: Disabled. The Monitor doesn't issue balloon messages to notify
+#    about connection or disconnection events.
+#
+#DisplayMonitorNotifications 1
+
+#
+# Enable or disable showing items for browsing existing connections.
+# or creating new ones in the Monitor tool. These items, enabled
+# by default, will launch the GUI of the local NoMachine client.
+#
+# 1: Enabled. User can browse connections on this host machine or
+#    create new ones from the Monitor menu.
+#
+# 0: Disabled. Connection items are not accessible in the Monitor
+#    menu.
+#
+#EnableMenuConnections 1
+
+#
+# Enable or disable support for DirectX applications, including games
+# running in fullscreen mode.
+#
+# 1: Enabled. DirectX output is captured and processed.
+#
+# 0: Disabled. Ignore output of DirectX applications.
+#
+EnableDirectXSupport 0
+
+#
+# Specify the physical display or range of X server displays which are
+# made available to NoMachine connections. It is possible to specify a
+# single display by display number, e.g. :0, or by port, e.g. 6000.
+# Range of displays can be specified as a dash separated list,
+# e.g. :0-:7 or, by port number, 6200-6204. By default all displays
+# detected as running will be made available for users.
+#
+#PhysicalDisplays :0
+
+#
+# X-Window sessions will only use the X protocol compression. Depend-
+# ing on the application, this may require less bandwidth and comput-
+# ing resources.
+#
+# 1: Enabled. Enable X11 vector graphics mode.
+#
+# 0: Disabled. Disable X11 vector graphics mode.
+#
+#AgentX11VectorGraphics 1
+
+#
+# Enable or disable playing a sound alert when there is an event.
+#
+# 1: Enabled.  Play a sound when an event occurs, for example
+#              when the user connects to the physical desktop.
+#              This is the default.
+#
+# 0: Disabled. Disable acoustic alert.
+#
+#EnableSoundAlert 1
+
+#
+# Enable or disable access to the server status interface.
+#
+# 1: Enabled. Users can access the server status interface and the
+#    provided functionalities. The system  will request administrative
+#    credentials for the host machine to allow users to display any
+#    security sensitive information or change the settings. This is
+#    the default.
+#
+# 0: Disabled. The 'Server status' item will not be accessible in
+#    the system tray menu.
+#
+#EnableServerStatus 1
+
+#
+# Enable or disable access to the server preferences.
+#
+# 1: Enabled. Users can access the server preferences. The system
+#    will request administrative credentials for the host machine
+#    to allow users to change the settings. This is the default.
+#
+# 0: Disabled. Users will not have access to the server preferences.
+#
+#EnableServerPreferences 1
+
+#
+# Force legacy X11 keyboard support. Enabling this option the display
+# server will build the keyboard map using the X11 keycodes, even when
+# evdev Linux input driver is supported. The default is to use evdev
+# on node machines where it is available.
+#
+# 1: Enabled. Always use X11 keycodes even if evdev is supported.
+#
+# 0: Disabled. Use evdev if supported or fall back to X11 keycodes.
+#
+#AgentLegacyKeyboard 0
+
+#
+# Specify path to libraries to be added to the command for starting
+# a new virtual desktop.
+#
+#DesktopCommandLibraryPath ""
+
+#
+# Specify the default console system startup script. This
+# doesn't apply to Windows and Mac OS X platforms.
+#
+DefaultConsole xterm
+
+#
+# Enable or disable logging to the system log file, e.g. syslog
+# on UNIX based systems and Events log on Windows platforms.
+#
+# 1: Enabled. The node will log to the system log file.
+#
+# 0: Disabled. This is the default value, the node will log to
+#    the file specified in the SystemLogFile key.
+#
+#EnableSyslogSupport 0
+
+#
+# Set how often the server has to renew the Kerberos tickets and AFS
+# tokens to let users keep their Kerberos credentials inside the
+# session. The default value, 600 seconds, makes the server renew
+# tickets each 10 minutes. Multiples of 30 are accepted, 30 seconds
+# is the minimum value. Value must be lower than the maximum lifetime
+# set on the system for Kerberos credentials.
+#
+#KerberosCredentialsRenewal 600
+
+#
+# Enable or disable use of the hardware encoder.
+#
+# 1: Enabled. Use the hardware encoder if supported by the graphics
+#    card.
+#
+# 0: Disabled. Don't use the hardware encoder.
+#
+#EnableHardwareEncoding 1
+
+#
+# Set the DS (Differentiated Services) 8-bit field, previously known
+# as ToS (Type of Service), at the IP network layer. Valid values are
+# numbers from 0 to 255 in decimal or hexadecimal format (0x00-0xff).
+# The six most significant bits should be set to the DSCP values recom-
+# mended by RFC-2597 and RFC-2598 (e.g. use 72 or 0x48 for DSCP Class
+# AF21). The two least significative bits should be set to 0. It is
+# also possible to use the obsolete ToS flags (e.g. 16 or 0x10 for the
+# LOWDELAY behaviour).
+#
+#ProxyPacketPriority 0x48
+
+#
+# Enable or disable the server to execute single commands through
+# D-Bus. This key applies only to Linux platforms.
+#
+# 1: Enabled. The node will use dbus-launch to run single commands
+#    such as gnome-terminal. This is required on those distributions
+#    which rely on dbus-launch for standard X session in order to let
+#    users run NoMachine custom sessions.
+#
+# 0: Disabled. Do not use dbus-launch for executing single commands.
+#
+EnableDbusLaunch 1
+
+#
+# Show or hide the item in the Monitor tool for enabling or disabling
+# accepting connections to this physical desktop.
+#
+# 1: Enabled. The Accepting connection item is shown in the Monitor
+#    menu. The desktop owner can switch screen-sharing on/off.
+#
+# 0: Disabled. The Accepting connection item is not displayed in the
+#    Monitor menu.
+#
+#EnableAcceptingConnection 1
+

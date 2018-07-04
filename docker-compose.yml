@@ -11,22 +11,23 @@ services:
     tty: true
     ports:
     - 4001:4000/tcp
-#    - 4443:4443/tcp
+    - 4443:4443/tcp
 #    - 4080:4080/tcp
     volumes:
     - ${PWD}/volumes/home:/home
-    networks:
-      - backend
+    # - ${PWD}/node.cfg:/usr/NX/etc/node.cfg
+    # networks:
+    #   - backend
 
-    labels:
-      - "traefik.docker.network=backend"
-      - "traefik.domain=vdi.dtpnk.tech"
-      - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
-      - "traefik.enable=true"
-      - "traefik.port=4080"
-      - "traefik.frontend.passHostHeader=true"
-      - "traefik.frontend.whiteList.useXForwardedFor=true"
+    # labels:
+      # - "traefik.docker.network=backend"
+      # - "traefik.domain=vdi.dtpnk.tech"
+      # - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
+      # - "traefik.enable=true"
+      # - "traefik.port=4080"
+      # - "traefik.frontend.passHostHeader=true"
+      # - "traefik.frontend.whiteList.useXForwardedFor=true"
 
-networks:
-  backend:
-    external: true  
+# networks:
+#   backend:
+#     external: true  
