@@ -29,7 +29,7 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
     sed -i -e "s/# $LANG.*/$LANG.UTF-8 UTF-8/" /etc/locale.gen && \
     dpkg-reconfigure --frontend="${DEBIAN_FRONTEND}" locales && \
     update-locale LANG=$LANG && \
-	echo "XKBLAYOUT=\"${KEYMAP}\"" > /etc/default/keyboard
+	echo "XKBLAYOUT=\"${KEYMAP}\"" > /etc/default/keyboard && \
 	# software
 	apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
 	add-apt-repository universe && apt-get update -y && \
