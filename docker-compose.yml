@@ -1,6 +1,6 @@
 version: '2'
 services:
-  Desktop-1:
+  app:
     environment:
     - PASSWORD=password
     - USER=user
@@ -11,7 +11,19 @@ services:
     tty: true
     ports:
     - 4001:4000/tcp
-    - 4443:4443/tcp
-    - 4080:4080/tcp
+#    - 4443:4443/tcp
+#    - 4080:4080/tcp
     volumes:
     - ${PWD}/volumes/home:/home
+    networks:
+      - backend
+
+    labels:
+      - "traefik.docker.network=backend"
+      - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
+      - "traefik.enable=true"
+      - "traefik.port=4443"
+
+networks:
+  backend:
+    external: true  
