@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Configure timezone and locale to spanish and America/Bogota timezone. Change locale and timezone to whatever you want
 ENV LANG="de_DE.UTF-8"
 ENV LANGUAGE=de_DE
-ENV KEYMAP=de
+ENV KEYMAP="de"
 ENV TIMEZONE="Europe/Berlin"
 #ENV DESKTOP="mate-desktop-environment-extras"
 ENV DESKTOP="xfce4"
@@ -29,6 +29,7 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
     sed -i -e "s/# $LANG.*/$LANG.UTF-8 UTF-8/" /etc/locale.gen && \
     dpkg-reconfigure --frontend="${DEBIAN_FRONTEND}" locales && \
     update-locale LANG=$LANG && \
+	echo "XKBLAYOUT=\"${KEYMAP}\"" > /etc/default/keyboard
 	# software
 	apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
 	add-apt-repository universe && apt-get update -y && \
