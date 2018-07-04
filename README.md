@@ -1,18 +1,15 @@
-# docker-ubuntu-mate-desktop-nomachine
-Ubuntu Desktop 16.04 (MATE) Dockerfile with NoMachine remote access and firefox, libreoffice and tor-browser
+# Docker VDI (Virtual Desktop Instance)
+Ubuntu Desktop 16.04 (xfce) Dockerfile with NoMachine remote access and firefox, libreoffice and tor-browser & more
 
 # How to run
 ## Build
 
 ```
-git clone https://github.com/cesarandreslopez/docker-ubuntu-mate-desktop-nomachine.git
-cd docker-ubuntu-mate-desktop-nomachine
-docker build -t=cesarandreslopez/docker-ubuntu-mate-desktop-nomachine .
+git clone https://git.dtpnk.tech/dtnpnk-labs/docker-vdi.git
+cd docker-vdi
+docker build -t=vdi:xfce .
 ```
-## Docker pull command
-```
-docker pull cesarandreslopez/docker-ubuntu-mate-desktop-nomachine
-```
+
 
 ## Enviroment vaiables
 USER -> user for the nomachine login
@@ -21,7 +18,7 @@ PASSWORD -> password for the nomachine login
 ## Usage
 
 ```
-docker run -d -p 4000:4000 --name desktop -e PASSWORD=password -e USER=user --cap-add=SYS_PTRACE cesarandreslopez/docker-ubuntu-mate-desktop-nomachine
+docker run -d -p 4000:4000 -p 4080:4000 -p 4443:4443 --name vdi -e PASSWORD=password -e USER=user --cap-add=SYS_PTRACE vdi
 ```
 
 ## Connect to the container
