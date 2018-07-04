@@ -22,7 +22,7 @@ services:
       - "traefik.docker.network=backend"
       - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
       - "traefik.enable=true"
-      - "traefik.port=4443"
+      - "traefik.port=4080"
 
 networks:
   backend:
