@@ -20,9 +20,12 @@ services:
 
     labels:
       - "traefik.docker.network=backend"
+      - "traefik.domain=vdi.dtpnk.tech"
       - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
       - "traefik.enable=true"
       - "traefik.port=4080"
+      - "traefik.frontend.passHostHeader=true"
+      - "traefik.frontend.whiteList.useXForwardedFor=true"
 
 networks:
   backend:
