@@ -1,14 +1,19 @@
-version: '2'
+version: '3'
 services:
   app:
+    build: .
+    image: vdi:xfce
+
     environment:
     - PASSWORD=password
     - USER=user
+    - KEYMAP="de"
+
     cap_add:
     - SYS_PTRACE
-    image: vdi:xfce
     stdin_open: true
     tty: true
+
     ports:
     - 4001:4000/tcp
     - 4443:4443/tcp
@@ -17,16 +22,17 @@ services:
     volumes:
     - ./server.cfg:/usr/NX/etc/server.cfg
     - ./node.cfg:/usr/NX/etc/node.cfg
+    - ./bash_profile:/home/user/.bash_profile
     # - ./volumes/home:/home
     # networks:
     #   - backend
 
-    # labels:
-      # - "traefik.docker.network=backend"
-      # - "traefik.domain=vdi.dtpnk.tech"
-      # - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
-      # - "traefik.enable=true"
-      # - "traefik.port=4080"
+    labels:
+      - "traefik.docker.network=backend"
+      - "traefik.domain=vdi.dtpnk.tech"
+      - "traefik.frontend.rule=Host:vdi.dtpnk.tech"
+      - "traefik.enable=true"
+      - "traefik.port=4080"
       # - "traefik.frontend.passHostHeader=true"
       # - "traefik.frontend.whiteList.useXForwardedFor=true"
 
