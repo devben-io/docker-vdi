@@ -20,9 +20,10 @@ services:
 #    - 4080:4080/tcp
 
     volumes:
-    - ./server.cfg:/usr/NX/etc/server.cfg
-    - ./node.cfg:/usr/NX/etc/node.cfg
-    - ./bash_profile:/home/user/.bash_profile
+    - ./configs/server.cfg:/usr/NX/etc/server.cfg
+    - ./configs/node.cfg:/usr/NX/etc/node.cfg
+    - ./configs/bash_profile:/home/user/.bash_profile   # for keyboard layout
+    - ./configs/xfce4:/home/user/.config/xfce4          # XFCE4 config; setup for Desktop Look&Feel
     # - ./volumes/home:/home
     # networks:
     #   - backend
