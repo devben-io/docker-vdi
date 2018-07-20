@@ -13,9 +13,11 @@ services:
     - 4001:4000/tcp
     - 4443:4443/tcp
 #    - 4080:4080/tcp
+
     volumes:
-    - ${PWD}/volumes/home:/home
-    # - ${PWD}/node.cfg:/usr/NX/etc/node.cfg
+    - ./server.cfg:/usr/NX/etc/server.cfg
+    - ./node.cfg:/usr/NX/etc/node.cfg
+    # - ./volumes/home:/home
     # networks:
     #   - backend
 
@@ -30,4 +32,4 @@ services:
 
 # networks:
 #   backend:
-#     external: true  
+#     external: true

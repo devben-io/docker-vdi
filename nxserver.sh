@@ -6,5 +6,5 @@ groupadd -r $USER -g 433 \
 && chown -R $USER:$USER /home/$USER \
 && echo $USER':'$PASSWORD | chpasswd
 /etc/NX/nxserver --startup
-setxkbmap de
+
 tail -f /usr/NX/var/log/nxserver.log
