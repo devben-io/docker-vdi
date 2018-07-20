@@ -45,9 +45,18 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
 
 # additional softeware: download tor, firefox, libreoffice and git, etc
 RUN add-apt-repository ppa:webupd8team/tor-browser && apt-get update -y && \
-	apt-get install -y aptitude tor firefox libreoffice htop nano git vim tor-browser iftop chromium-browser keepassx sshfs encfs terminator && \
+	apt-get install -y aptitude tor firefox libreoffice htop nano git vim tor-browser iftop chromium-browser keepassx sshfs encfs terminator nmap tig mtr && \
 	# Clean up APT when done.
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# add Configs
+ADD ./configs/server.cfg /usr/NX/etc/server.cfg
+ADD ./configs/node.cfg /usr/NX/etc/node.cfg
+## keyboard-layout
+ADD ./configs/bash_profile /home/user/.bash_profile
+## Desktop config
+ADD ./configs/xfce4 /home/user/.config/xfce4
+
 
 ADD nxserver.sh /
 
