@@ -2,7 +2,7 @@
 Ubuntu Desktop 16.04 (xfce) Dockerfile with NoMachine remote access and firefox, libreoffice and tor-browser & more
 
 # How to run
-## with docker-nocompose
+## with docker-compose
 build & run:
 ```
 docker-compose up -d
