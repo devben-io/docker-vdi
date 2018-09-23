@@ -17,7 +17,7 @@ docker-compose build --no-cache
 ### Build
 
 ```
-git clone https://git.dtpnk.tech/dtnpnk-labs/docker-vdi.git
+git clone <URL>
 cd docker-vdi
 docker build -t=vdi:xfce .
 ```
