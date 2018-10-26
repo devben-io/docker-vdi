@@ -12,11 +12,11 @@ ENV DESKTOP="xfce4"
 
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
 # Free
-#ENV NOMACHINE_PACKAGE_NAME nomachine_6.2.4_1_amd64.deb
-#ENV NOMACHINE_MD5 210bc249ec9940721a1413392eee06fe
+ENV NOMACHINE_PACKAGE_NAME nomachine_6.3.6_1_amd64.deb
+ENV NOMACHINE_MD5 6a30a4ee607848685941cf3b575eb0e9
 # Enterprise
-ENV NOMACHINE_PACKAGE_NAME nomachine-enterprise-desktop-evaluation_6.2.4_4_amd64.deb
-ENV NOMACHINE_MD5 a066f66b07f9d9b4b189e82d46f4464e
+#ENV NOMACHINE_PACKAGE_NAME nomachine-enterprise-desktop-evaluation_6.2.4_4_amd64.deb
+#ENV NOMACHINE_MD5 a066f66b07f9d9b4b189e82d46f4464e
 
 ########################
 
@@ -37,7 +37,7 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
 	# Install the desktop-enviroment version you would like to have
     apt-get install -y "${DESKTOP}" && \
 	# Install nomachine, change password and username to whatever you want here
-	curl -fSL "http://download.nomachine.com/download/6.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb && \
+	curl -fSL "http://download.nomachine.com/download/6.3/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb && \
 	echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - && \
 	dpkg -i nomachine.deb && \
 	# Clean up APT when done.
