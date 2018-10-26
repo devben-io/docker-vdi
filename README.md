@@ -2,7 +2,7 @@
 Ubuntu Desktop 16.04 (xfce) Dockerfile with NoMachine remote access and firefox, libreoffice and tor-browser & more
 
 # How to run
-## with docker-nocompose
+## with docker-compose
 build & run:
 ```
 docker-compose up -d
@@ -17,7 +17,7 @@ docker-compose build --no-cache
 ### Build
 
 ```
-git clone https://git.dtpnk.tech/dtnpnk-labs/docker-vdi.git
+git clone <URL>
 cd docker-vdi
 docker build -t=vdi:xfce .
 ```
