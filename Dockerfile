@@ -38,7 +38,7 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
 # RUN add-apt-repository ppa:webupd8team/tor-browser && apt-get update -y && \
 	# apt-get install -y aptitude tor firefox libreoffice htop nano git vim tor-browser iftop chromium-browser keepassx sshfs encfs terminator nmap tig mtr && \
 
-RUN	apt-get update && apt-get install -y chromium-browser && \
+RUN	apt-get update && apt-get install -y chromium-browser firefox torbrowser-launcher && \
 	# Clean up APT when done.
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -63,7 +63,7 @@ FROM vdi_base
 
 # Free - lastest
 ENV NOMACHINE_PACKAGE_NAME nomachine_6.5.6_9_amd64.deb
-ENV NOMACHINE_MD5 8fc4b0a467eff56f662f348c7e03c6ec
+#ENV NOMACHINE_MD5 8fc4b0a467eff56f662f348c7e03c6ec
 
 # Enterprise
 #ENV NOMACHINE_PACKAGE_NAME nomachine-enterprise-desktop-evaluation_6.2.4_4_amd64.deb
