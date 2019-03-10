@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04 as vdi_base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -23,9 +23,9 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
     update-locale LANG=$LANG && \
 	echo "XKBLAYOUT=\"${KEYMAP}\"" > /etc/default/keyboard && \
 	# software
-	apt-get install -y software-properties-common python-software-properties python3-software-properties sudo && \
+	apt-get install -y software-properties-common python3-software-properties sudo && \
 	add-apt-repository universe && apt-get update -y && \
-	apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libnss3-1d libxss1 wget xdg-utils libpango1.0-0 fonts-liberation && \
+	apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libxss1 wget xdg-utils libpango1.0-0 fonts-liberation && \
 	# Install the desktop-enviroment version you would like to have
     apt-get install -y "${DESKTOP}" && \
     # Cleanup    
@@ -33,16 +33,28 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
     
-##################################################################################
+#######################################
 # additional softeware: download tor, firefox, libreoffice and git, etc
-RUN add-apt-repository ppa:webupd8team/tor-browser && apt-get update -y && \
+# RUN add-apt-repository ppa:webupd8team/tor-browser && apt-get update -y && \
 	# apt-get install -y aptitude tor firefox libreoffice htop nano git vim tor-browser iftop chromium-browser keepassx sshfs encfs terminator nmap tig mtr && \
-	apt-get install -y chromium-browser && \
+
+RUN	apt-get update && apt-get install -y chromium-browser && \
 	# Clean up APT when done.
 	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
+
+
+
+
+
 ##################################################################################
+# nomachine installation
+
+FROM vdi_base
+
+
+#######################################
 # ONLINE install
 # Goto https://www.nomachine.com/download/download&id=10 and change for the latest NOMACHINE_PACKAGE_NAME and MD5 shown in that link to get the latest version.
 # Free - OLD
@@ -65,7 +77,7 @@ ENV NOMACHINE_MD5 8fc4b0a467eff56f662f348c7e03c6ec
 #	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
-##################################################################################
+#######################################
 # OFFLINE install
 ADD ./${NOMACHINE_PACKAGE_NAME} /nomachine.deb
 RUN	dpkg -i /nomachine.deb && \
@@ -73,7 +85,7 @@ RUN	dpkg -i /nomachine.deb && \
     rm -f /nomachine.deb
 
 
-##################################################################################
+#######################################
 # add Configs
 ADD ./configs/server.cfg /usr/NX/etc/server.cfg
 ADD ./configs/node.cfg /usr/NX/etc/node.cfg
