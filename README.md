@@ -1,5 +1,5 @@
 # Docker VDI (Virtual Desktop Instance)
-Ubuntu Desktop 16.04 (xfce) Dockerfile with NoMachine remote access and firefox, libreoffice and tor-browser & more
+Ubuntu Desktop 18.04 (xfce) Dockerfile with NoMachine remote access and firefox, chromium & more
 
 # How to run
 ## with docker-compose
@@ -19,7 +19,7 @@ docker-compose build --no-cache
 ```
 git clone <URL>
 cd docker-vdi
-docker build -t=vdi:xfce .
+docker build -t=vdi .
 ```
 
 

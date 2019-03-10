@@ -1,8 +1,11 @@
-version: '3'
+version: '3.5'
 services:
   app:
-    build: .
-    image: vdi:18.04
+    build:
+      context: .
+      target: vdi
+    image: vdi:latest
+   
 
     environment:
     - PASSWORD=password

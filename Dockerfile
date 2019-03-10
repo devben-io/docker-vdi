@@ -51,7 +51,7 @@ RUN	apt-get update && apt-get install -y chromium-browser firefox torbrowser-lau
 ##################################################################################
 # nomachine installation
 
-FROM vdi_base
+FROM vdi_base as vdi
 
 
 #######################################
@@ -63,23 +63,23 @@ FROM vdi_base
 
 # Free - lastest
 ENV NOMACHINE_PACKAGE_NAME nomachine_6.5.6_9_amd64.deb
-#ENV NOMACHINE_MD5 8fc4b0a467eff56f662f348c7e03c6ec
+# ENV NOMACHINE_MD5 8fc4b0a467eff56f662f348c7e03c6ec
 
 # Enterprise
-#ENV NOMACHINE_PACKAGE_NAME nomachine-enterprise-desktop-evaluation_6.2.4_4_amd64.deb
-#ENV NOMACHINE_MD5 a066f66b07f9d9b4b189e82d46f4464e
+# ENV NOMACHINE_PACKAGE_NAME nomachine-enterprise-desktop-evaluation_6.5.6_10_amd64.deb
+# ENV NOMACHINE_MD5 306a8554a6ffc9aec6f8a2b7e6e61e46
 
 # Install nomachine, change password and username to whatever you want here
 #RUN	# curl -fSL "http://download.nomachine.com/download/5.2/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 #	curl -fSL "http://download.nomachine.com/download/6.5/Linux/${NOMACHINE_PACKAGE_NAME}" -o nomachine.deb \
 #	echo "${NOMACHINE_MD5} *nomachine.deb" | md5sum -c - && \
-	# Clean up APT when done.
+#	# Clean up APT when done.
 #	apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
 #######################################
 # OFFLINE install
-ADD ./${NOMACHINE_PACKAGE_NAME} /nomachine.deb
+ADD ./install/${NOMACHINE_PACKAGE_NAME} /nomachine.deb
 RUN	dpkg -i /nomachine.deb && \
     # Cleanup
     rm -f /nomachine.deb
