@@ -30,7 +30,7 @@ docker build -t=vdi .
 ### Usage
 
 ```
-docker run -d --rm -p 4000:4000 -p 4080:4080 -p 4443:4443 --name vdi -e PASSWORD=password -e USER=user --cap-add=SYS_PTRACE vdi:xfce
+docker run -d --rm -p 4000:4000 -p 4080:4080 -p 4443:4443 --name vdi -e PASSWORD=password -e USER=user --cap-add=SYS_PTRACE vdi
 ```
 
 
