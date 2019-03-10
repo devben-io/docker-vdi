@@ -1,8 +1,11 @@
-version: '3'
+version: '3.5'
 services:
   app:
-    build: .
-    image: vdi:xfce
+    build:
+      context: .
+      target: vdi
+    image: vdi:latest
+   
 
     environment:
     - PASSWORD=password
@@ -19,12 +22,14 @@ services:
     - 4443:4443/tcp
 #    - 4080:4080/tcp
 
-    # volumes:
+#    volumes:
     # - ./configs/server.cfg:/usr/NX/etc/server.cfg
     # - ./configs/node.cfg:/usr/NX/etc/node.cfg
     # - ./configs/bash_profile:/home/user/.bash_profile   # for keyboard layout
     # - ./configs/xfce4:/home/user/.config/xfce4          # XFCE4 config; setup for Desktop Look&Feel
     # - ./volumes/home:/home
+#      - ./volumes/Downloads:/home/user/Downloads
+#      - /tmp/1/Downloads:/home/user/Downloads
     # networks:
     #   - backend
 
