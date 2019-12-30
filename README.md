@@ -33,6 +33,16 @@ docker build -t=vdi .
 docker run -d --rm -p 4000:4000 -p 4080:4080 -p 4443:4443 --name vdi -e PASSWORD=password -e USER=user --cap-add=SYS_PTRACE vdi
 ```
 
+### Language and Locale
+In the Docker file the default language and location are set to German/Germany, these can be updated to English/United Stated
+
+```
+ENV LANG="en_US.UTF-8"
+ENV LANGUAGE=en_US
+ENV KEYMAP="us"
+ENV TIMEZONE="America/Denver"
+```
+
 
 # Connect to the container
 ## with the Client
