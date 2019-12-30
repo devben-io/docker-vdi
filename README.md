@@ -34,7 +34,7 @@ docker run -d --rm -p 4000:4000 -p 4080:4080 -p 4443:4443 --name vdi -e PASSWORD
 ```
 
 ### Language and Locale
-In the Docker file the default language and location are set to German/Germany, these can be updated to English/United Stated
+In the Docker file the default language and location are set to German/Germany, these can be changed to English/United States
 
 ```
 ENV LANG="en_US.UTF-8"
