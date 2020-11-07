@@ -1,4 +1,4 @@
-FROM ubuntu:18.04 as vdi_base
+FROM ubuntu:20.04 as vdi_base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -25,7 +25,7 @@ RUN apt-get clean && apt-get update && apt-get install -y locales apt-utils && \
 	# software
 	apt-get install -y software-properties-common python3-software-properties sudo && \
 	add-apt-repository universe && apt-get update -y && \
-	apt-get install -y vim xterm pulseaudio cups curl libgconf2-4 iputils-ping libxss1 wget xdg-utils libpango1.0-0 fonts-liberation && \
+	apt-get install -y vim xterm pulseaudio cups curl libgconf-2-4 iputils-ping libxss1 wget xdg-utils libpango1.0-0 fonts-liberation && \
 	# Install the desktop-enviroment version you would like to have
     apt-get install -y "${DESKTOP}" && \
     # Cleanup    
